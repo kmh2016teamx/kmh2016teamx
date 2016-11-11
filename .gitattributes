@@ -1,0 +1,7 @@
+# git に text として認識させたいファイルを設定
+Gemfile      text
+Gemfile.lock text
+*.md         text
+
+# windows でも LF のままにするファイルを設定
+*.sh text eol=lf
