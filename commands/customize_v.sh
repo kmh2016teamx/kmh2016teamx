@@ -104,10 +104,10 @@ fi
 
 echo '### bundle install'
 bundle config build.nokogiri --use-system-libraries
-bundle install
+# bundle install
 
-echo '### secrets.yml 作成'
-./create_secrets_sv.sh
+# echo '### secrets.yml 作成'
+# ./create_secrets_sv.sh
 
 echo '## bower インストール'
 
