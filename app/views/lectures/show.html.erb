@@ -8,6 +8,19 @@
   <dd><%= @lecture.name %></dd>
 </dl>
 
+<h3>issues</h3>
+<% if @issues.to_a.empty? %>
+  <h3>empty</h3>
+<% else %>
+  <% @issues.each do |issue| %>
+      <div>
+          <p><%= issue.name %></p>
+      </div>
+  <% end %>
+<% end %>
+
+<%= link_to 'Issues' %>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
               lectures_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),

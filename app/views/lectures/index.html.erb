@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to lecture.id, lecture_path(lecture) %></td>
         <td><%= lecture.name %></td>
-        <td><%=l lecture.created_at %></td>
+        <td><%= lecture.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_lecture_path(lecture), :class => 'btn btn-default btn-xs' %>
@@ -25,6 +25,8 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
+          <%= link_to 'Issues', issues_path(lecture_id: lecture.id) %>
+
         </td>
       </tr>
     <% end %>

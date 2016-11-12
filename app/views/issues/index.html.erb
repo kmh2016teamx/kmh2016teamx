@@ -20,7 +20,7 @@
         <td><%= issue.name %></td>
         <td><%= issue.status %></td>
         <td><%= issue.lecture_id %></td>
-        <td><%=l issue.created_at %></td>
+        <td><%= issue.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_issue_path(issue), :class => 'btn btn-default btn-xs' %>
@@ -36,5 +36,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_issue_path,
+            new_issue_path(lecture_id: params[:lecture_id]),
             :class => 'btn btn-primary' %>
