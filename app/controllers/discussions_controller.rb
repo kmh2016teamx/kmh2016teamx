@@ -1,10 +1,12 @@
 class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
+  before_action :new, only: [:index]
 
   # GET /discussions
   # GET /discussions.json
   def index
     @discussions = Discussion.all
+    @discussion = Discussion.new
   end
 
   # GET /discussions/1
@@ -21,6 +23,10 @@ class DiscussionsController < ApplicationController
   def edit
   end
 
+  def submit
+    render :index
+  end
+
   # POST /discussions
   # POST /discussions.json
   def create
@@ -28,8 +34,8 @@ class DiscussionsController < ApplicationController
 
     respond_to do |format|
       if @discussion.save
-        format.html { redirect_to @discussion, notice: 'Discussion was successfully created.' }
-        format.json { render :show, status: :created, location: @discussion }
+        format.html { redirect_to discussions_path, notice: 'Discussion was successfully created.' }
+        format.json { render :index, status: :created, location: @discussions }
       else
         format.html { render :new }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
@@ -42,8 +48,8 @@ class DiscussionsController < ApplicationController
   def update
     respond_to do |format|
       if @discussion.update(discussion_params)
-        format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @discussion }
+        format.html { redirect_to discussions_path, notice: 'Discussion was successfully updated.' }
+        format.json { render :show, status: :ok, location: @discussions }
       else
         format.html { render :edit }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
