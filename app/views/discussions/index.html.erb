@@ -22,7 +22,7 @@
         <td><%= discussion.description %></td>
         <td><%= discussion.issue_id %></td>
         <td><%= discussion.user_id %></td>
-        <td><%=l discussion.created_at %></td>
+        <td><%= discussion.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_discussion_path(discussion), :class => 'btn btn-default btn-xs' %>

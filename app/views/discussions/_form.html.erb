@@ -24,8 +24,10 @@
   </div>
   <div class="form-group">
     <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <button type="button" id="start_rec">start</button>
+    <button type="button" id="cancel_rec">stop</button>
     <div class="col-lg-10">
-      <%= f.text_field :description, :class => 'form-control' %>
+      <%= f.text_area :description, :class => 'form-control' %>
     </div>
     <%=f.error_span(:description) %>
   </div>
