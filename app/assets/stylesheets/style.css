@@ -5,6 +5,9 @@
 a {
     color: #2f937b;
 }
+a.btn-primary:visited {
+    color: #fff;
+}
 .gray {
     background-color: #F1F1F1;
 }
@@ -44,7 +47,8 @@ a {
 .jumbotron.jumbotron-lg{
     background:url('main.jpg') center no-repeat;
     background-size: cover;
-    padding: 120px 30px;
+    padding: 120px 30px 200px 30px;
+    margin-bottom: 0;
 }
 .jumbotron-lg .container {
     text-align: center;

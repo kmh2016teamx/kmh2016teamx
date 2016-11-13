@@ -5,14 +5,14 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th>講義名</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
-        <td><%=link_to lecture.name, issues_path(lecture_id: lecture.id)%></td>
+        <td><%=link_to lecture.name, lecture_issues_path(lecture_id: lecture.id)%></td>
         <td><%= link_to '編集', lecture_path(lecture) %></td>
       </tr>
     <% end %>
