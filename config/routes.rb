@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :lectures
   devise_for :users
   root 'kouhit_hubs#index'
 
