@@ -10,6 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require msgpack.codec
+//= require libspeexdsp
+//= require resampler.min
+//= require speechrec.min
+//
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
