@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :discussions
   resources :issues
   resources :lectures
   devise_for :users
