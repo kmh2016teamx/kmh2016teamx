@@ -1,16 +1,15 @@
 <%- model_class = Issue -%>
 <div class="page-header">
-  <h1>疑問・質問</h1>
+  <h1>質問一覧</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:status) %></th>
-      <th><%= model_class.human_attribute_name(:lecture_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>タイトル</th>
+      <th>講義ID</th>
+      <th>作成日時</th>
+      <th>編集 / 削除</th>
     </tr>
   </thead>
   <tbody>
@@ -18,17 +17,11 @@
       <tr>
         <td><%= link_to issue.id, lecture_issue_path(issue_id: issue.id) %></td>
         <td><%= issue.name %></td>
-        <td><%= issue.status %></td>
         <td><%= issue.lecture_id %></td>
         <td><%= issue.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_lecture_issue_path(issue_id: issue.id), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      lecture_issue_path(issue_id: issue.id),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+          <a class="btn btn-default btn-xs" href="/lectures/2/issues/2/edit"><span class="translation_missing" title="translation missing: ja.helpers.links.edit">編集</span></a>
+          <a data-confirm="Are you sure?" class="btn btn-xs btn-danger" rel="nofollow" data-method="delete" href="/lectures/2/issues/2"><span class="translation_missing" title="translation missing: ja.helpers.links.destroy">削除</span></a>
           <%= link_to 'Discussions', lecture_issue_discussions_path(issue_id: issue.id) %>
         </td>
       </tr>
@@ -36,6 +29,4 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_lecture_issue_path(lecture_id: params[:lecture_id]),
-            :class => 'btn btn-primary' %>
+<a class="btn btn-primary" href="/lectures/2/issues/new"><span class="translation_missing" title="translation missing: ja.helpers.links.new">質問を投稿する</span></a>
