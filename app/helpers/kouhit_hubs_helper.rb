@@ -1,0 +1,2 @@
+module KouhitHubsHelper
+end
