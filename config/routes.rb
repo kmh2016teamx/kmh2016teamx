@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :discussions
+  resources :discussions do
+    collection do
+      get :submit
+    end
+  end
   resources :issues
   resources :lectures
   devise_for :users
