@@ -1,3 +1,6 @@
 .footer {
   margin-top: 60px;
 }
+/*全体*/
+.jumbotron { background:url('main.jpg') center no-repeat; background-size: cover;}
+.jumbotron h1 { color: #FFF;}
