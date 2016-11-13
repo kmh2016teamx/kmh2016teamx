@@ -2,5 +2,56 @@
   margin-top: 60px;
 }
 /*全体*/
-.jumbotron { background:url('main.jpg') center no-repeat; background-size: cover;}
-.jumbotron h1 { color: #FFF;}
+/*btn*/
+.btn-green1 {
+    color: #2f937b;
+    background-color: transparent;
+    border: 2px solid #2f937b;
+}
+.btn-green1:hover {
+    background-color: #2f937b;
+    opacity: 0.9;
+    color: #fff;
+    transition-timing-function: ease;
+    transition-duration: 200ms;
+}
+/*HEADER*/
+.navbar-default {
+    background-color: #222222;
+    border-color: #545454;
+}
+.navbar.index-page {
+    margin-bottom: 0;
+}
+.jumbotron.jumbotron-lg{
+    background:url('main.jpg') center no-repeat;
+    background-size: cover;
+    padding: 120px 30px;
+}
+.jumbotron-lg .container {
+    text-align: center;
+}
+.jumbotron h2 {
+    font-size: 48px;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px -1px 3px rgba(26,26,26,0.20);
+    margin-bottom: 30px;
+}
+.btn-green {
+    border-color: #2f937b;
+    color: #2f937b;
+}
+.btn.btn-green:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+.navbar-nav {
+    float: right;
+}
+
+
+/*FOOTER*/
+footer .navbar-text {
+    float: none;
+    text-align: center;
+}

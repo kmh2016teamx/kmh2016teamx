@@ -38,8 +38,13 @@
   </head>
   <body>
 
-    <div class="navbar navbar-default navbar-static-top">
+    <div class="navbar navbar-default navbar-static-top index-page">
       <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
         <a class="navbar-brand" href="#">KougitHub</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
@@ -64,14 +69,8 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
-      </div><!--/row-->
-    </div> <!-- /container -->
+    <%= bootstrap_flash %>
+    <%= yield %>
 
     <footer class="navbar navbar-default footer">
       <div class="container">
