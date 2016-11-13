@@ -18,8 +18,14 @@
         <td><%= lecture.name %></td>
         <td><%= lecture.created_at %></td>
         <td>
-          <a class="btn btn-default btn-xs" href="/lectures/2/edit"><span class="translation_missing" title="translation missing: ja.helpers.links.edit">編集</span></a>
-          <a data-confirm="Are you sure?" class="btn btn-xs btn-danger" rel="nofollow" data-method="delete" href="/lectures/2"><span class="translation_missing" title="translation missing: ja.helpers.links.destroy">削除</span></a>
+          <%= link_to "編集",
+                      edit_lecture_path(lecture), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "削除",
+                      lecture_path(lecture),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+          <%= link_to 'Issues', lecture_issues_path(lecture) %>
         </td>
       </tr>
     <% end %>

@@ -12,12 +12,14 @@
   <dd><%= @issue.lecture_id %></dd>
 </dl>
 
+<%= link_to 'Discussions', lecture_issue_discussions_path(issue_id: @issue.id) %>
+
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              issues_path, :class => 'btn btn-default'  %>
+              lecture_issues_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_issue_path(@issue), :class => 'btn btn-default' %>
+              edit_lecture_issue_path(issue_id: @issue.id), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              issue_path(@issue),
+              lecture_issue_path(issue_id: @issue.id),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
