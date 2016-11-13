@@ -1,4 +1,22 @@
-$(function() {
+$.fn.extend({
+  insertAtCaret: function(v) {
+    var o = this.get(0);
+    o.focus();
+    if (jQuery.browser != null && jQuery.browser.msie != null) {
+      var r = document.selection.createRange();
+      r.text = v;
+      r.select();
+    } else {
+      var s = o.value;
+      var p = o.selectionStart;
+      var np = p + v.length;
+      o.value = s.substr(0, p) + v + s.substr(p);
+      o.setSelectionRange(np, np);
+    }
+  }
+});
+
+$(document).on('turbolinks:load', function() {
 
   // 音声認識
 
@@ -23,7 +41,7 @@ $(function() {
 
   SpeechRec.on_result(function(result){
     console.log(result.candidates);
-    $("#discussion_description").val(result.candidates[0].speech);
+    $("#discussion_description").insertAtCaret(result.candidates[0].speech);
   });
 
 });

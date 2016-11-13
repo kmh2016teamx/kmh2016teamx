@@ -1,10 +1,10 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_lecture, only: [:index, :new, :create]
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = @lecture.issues.all
   end
 
   # GET /issues/1
@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
 
   # GET /issues/new
   def new
-    @issue = Issue.new
+    @issue = @lecture.issues.new
   end
 
   # GET /issues/1/edit
@@ -24,7 +24,11 @@ class IssuesController < ApplicationController
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(issue_params)
+    #@issue = Issue.new(issue_params)
+    binding.pry
+    @lecture = Lecture.find(params[:lecture_id])
+    @issue = @lecture.issues.create(issue_params)
+    redirect_to lecture_path(@lecture)
 
     respond_to do |format|
       if @issue.save
@@ -65,6 +69,10 @@ class IssuesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
       @issue = Issue.find(params[:id])
+    end
+
+    def set_lecture
+        @lecture = Lecture.find(params[:lecture_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
