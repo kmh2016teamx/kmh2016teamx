@@ -1,14 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :discussions do
-    collection do
-      get :submit
-    end
-  end
-  resources :issues
-  resources :lectures
-  devise_for :users
   root 'kouhit_hubs#index'
+
+  devise_for :users
+
+  resources :lectures, only: [] do
+    resources :issues, only: [] do
+      resources :discussions, param: :discussion_id do
+        collection do
+          get :submit
+        end
+      end
+    end
+    resources :issues, param: :issue_id
+  end
+  resources :lectures, param: :lecture_id
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,4 +1,4 @@
-<%= form_for @issue, :html => { :class => "form-horizontal issue" } do |f| %>
+<%= form_for [@lecture, @issue], :html => { :class => "form-horizontal issue" } do |f| %>
 
   <% if @issue.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -41,7 +41,7 @@
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                issues_path(lecture_id: params[:lecture_id]), :class => 'btn btn-default' %>
+                lecture_issues_path(lecture_id: params[:lecture_id]), :class => 'btn btn-default' %>
     </div>
   </div>
 

@@ -1,12 +1,12 @@
 <%- model_class = Lecture -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>講義一覧</h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%=  %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +19,6 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<%= link_to "新しい講義を作成する",
             new_lecture_path,
             :class => 'btn btn-primary' %>

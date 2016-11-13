@@ -1,33 +1,34 @@
 <%- model_class = Discussion -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>ディスカッション</h1>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:issue_id) %></th>
-      <th><%= model_class.human_attribute_name(:user_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>タイトル</th>
+      <th>内容</th>
+      <th>質問</th>
+      <th>投稿者</th>
+      <th>投稿日時</th>
+      <th>編集 / 削除</th>
     </tr>
   </thead>
   <tbody>
     <% @discussions.each do |discussion| %>
       <tr>
-        <td><%= link_to discussion.id, discussion_path(discussion) %></td>
+        <td><%= link_to discussion.id, lecture_issue_discussion_path(discussion_id: discussion.id) %></td>
         <td><%= discussion.name %></td>
         <td><%= discussion.description %></td>
         <td><%= discussion.issue_id %></td>
         <td><%= discussion.user_id %></td>
         <td><%= discussion.created_at %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_discussion_path(discussion), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      discussion_path(discussion),
+          <%= link_to "編集",
+                      edit_lecture_issue_discussion_path(discussion_id: discussion.id), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "削除",
+                      lecture_issue_discussion_path(discussion_id: discussion.id),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>

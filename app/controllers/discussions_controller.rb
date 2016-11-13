@@ -1,12 +1,14 @@
 class DiscussionsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_lecture
+  before_action :set_issue
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
   before_action :new, only: [:index]
 
   # GET /discussions
   # GET /discussions.json
   def index
-    @discussions = Discussion.all
-    @discussion = Discussion.new
+    @discussions = @issue.discussions.all
   end
 
   # GET /discussions/1
@@ -16,7 +18,7 @@ class DiscussionsController < ApplicationController
 
   # GET /discussions/new
   def new
-    @discussion = Discussion.new
+    @discussion = @issue.discussions.new
   end
 
   # GET /discussions/1/edit
@@ -30,12 +32,12 @@ class DiscussionsController < ApplicationController
   # POST /discussions
   # POST /discussions.json
   def create
-    @discussion = Discussion.new(discussion_params)
+    @discussion = @issue.discussions.build(discussion_params)
 
     respond_to do |format|
       if @discussion.save
-        format.html { redirect_to discussions_path, notice: 'Discussion was successfully created.' }
-        format.json { render :index, status: :created, location: @discussions }
+        format.html { redirect_to lecture_issue_discussion_path(discussion_id: @discussion.id), notice: 'Discussion was successfully created.' }
+        format.json { render :show, status: :created, location: @discussion }
       else
         format.html { render :new }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
@@ -48,8 +50,8 @@ class DiscussionsController < ApplicationController
   def update
     respond_to do |format|
       if @discussion.update(discussion_params)
-        format.html { redirect_to discussions_path, notice: 'Discussion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @discussions }
+        format.html { redirect_to lecture_issue_discussion_path(discussion_id: @discussion.id), notice: 'Discussion was successfully updated.' }
+        format.json { render :show, status: :ok, location: @discussion }
       else
         format.html { render :edit }
         format.json { render json: @discussion.errors, status: :unprocessable_entity }
@@ -62,7 +64,7 @@ class DiscussionsController < ApplicationController
   def destroy
     @discussion.destroy
     respond_to do |format|
-      format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
+      format.html { redirect_to lecture_issue_discussions_url, notice: 'Discussion was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,7 +72,15 @@ class DiscussionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_discussion
-      @discussion = Discussion.find(params[:id])
+      @discussion = @issue.discussions.find(params[:discussion_id])
+    end
+
+    def set_issue
+      @issue = @lecture.issues.find(params[:issue_id])
+    end
+
+    def set_lecture
+      @lecture = Lecture.find(params[:lecture_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

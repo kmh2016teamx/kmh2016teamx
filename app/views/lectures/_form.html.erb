@@ -16,7 +16,7 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, :class => 'control-label col-lg-2' %>
+    <label class="control-label col-lg-2" for="lecture_name">講義名</label>
     <div class="col-lg-10">
       <%= f.text_field :name, :class => 'form-control' %>
     </div>
@@ -25,9 +25,8 @@
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                lectures_path, :class => 'btn btn-default' %>
+      <input type="submit" name="commit" value="講義を作成" class="btn btn-primary">
+      <a class="btn btn-default" href="/lectures"><span class="translation_missing" title="translation missing: ja.helpers.links.cancel">キャンセル</span></a>
     </div>
   </div>
 
