@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_lecture
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
