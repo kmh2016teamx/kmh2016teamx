@@ -24,4 +24,5 @@ function command_exists {
 
 
 bundle install
+rake db:migrate
 
