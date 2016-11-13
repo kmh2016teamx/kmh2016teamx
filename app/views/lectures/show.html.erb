@@ -1,25 +1,14 @@
 <%- model_class = Lecture -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @lecture.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @lecture.name %></dd>
+  <dt><strong>作成日:</strong></dt>
+  <dd><%= @lecture.created_at %></dd>
+  <dt><strong>作成者:</strong></dt>
+  <dd><%= @lecture.created_at %></dd>
 </dl>
-
-<h3>issues</h3>
-<% if @issues.to_a.empty? %>
-  <h3>empty</h3>
-<% else %>
-  <% @issues.each do |issue| %>
-      <div>
-          <p><%= issue.name %></p>
-      </div>
-  <% end %>
-<% end %>
-
-<%= link_to 'Issues', lecture_issues_path(@lecture) %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               lectures_path, :class => 'btn btn-default'  %>
