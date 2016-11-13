@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
+  before_action :set_lecture
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
-  before_action :set_lecture, only: [:index, :new, :create]
+
   # GET /issues
   # GET /issues.json
   def index
@@ -24,15 +25,10 @@ class IssuesController < ApplicationController
   # POST /issues
   # POST /issues.json
   def create
-    #@issue = Issue.new(issue_params)
-    binding.pry
-    @lecture = Lecture.find(params[:lecture_id])
-    @issue = @lecture.issues.create(issue_params)
-    redirect_to lecture_path(@lecture)
-
+    @issue = @lecture.issues.build(issue_params)
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
+        format.html { redirect_to lecture_issue_path(issue_id: @issue), notice: 'Issue was successfully created.' }
         format.json { render :show, status: :created, location: @issue }
       else
         format.html { render :new }
@@ -46,7 +42,7 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to lecture_issue_path(issue_id: @issue.id), notice: 'Issue was successfully updated.' }
         format.json { render :show, status: :ok, location: @issue }
       else
         format.html { render :edit }
@@ -60,7 +56,7 @@ class IssuesController < ApplicationController
   def destroy
     @issue.destroy
     respond_to do |format|
-      format.html { redirect_to issues_url, notice: 'Issue was successfully destroyed.' }
+      format.html { redirect_to lecture_issues_url, notice: 'Issue was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,11 +64,11 @@ class IssuesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue
-      @issue = Issue.find(params[:id])
+      @issue = @lecture.issues.find(params[:issue_id])
     end
 
     def set_lecture
-        @lecture = Lecture.find(params[:lecture_id])
+      @lecture = Lecture.find(params[:lecture_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

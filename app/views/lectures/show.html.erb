@@ -19,7 +19,7 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Issues' %>
+<%= link_to 'Issues', lecture_issues_path(@lecture) %>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
               lectures_path, :class => 'btn btn-default'  %>
