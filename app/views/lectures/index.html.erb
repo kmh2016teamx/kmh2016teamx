@@ -5,28 +5,15 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>講義ID</th>
-      <th>講義名</th>
-      <th>作成日時</th>
-      <th>編集 / 削除</th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
-        <td><%= link_to lecture.id, lecture_path(lecture) %></td>
-        <td><%= lecture.name %></td>
-        <td><%= lecture.created_at %></td>
-        <td>
-          <%= link_to "編集",
-                      edit_lecture_path(lecture), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "削除",
-                      lecture_path(lecture),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-          <%= link_to 'Issues', lecture_issues_path(lecture) %>
-        </td>
+        <td><%=link_to lecture.name, issues_path(lecture_id: lecture.id)%></td>
+        <td><%= link_to '編集', lecture_path(lecture) %></td>
       </tr>
     <% end %>
   </tbody>
